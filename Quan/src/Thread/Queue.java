@@ -6,9 +6,6 @@
 package Thread;
 
 import WriteFile.WriteFile;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -17,8 +14,16 @@ import java.util.logging.Logger;
 public class Queue extends Thread {
 
     private int dem;
+    private int sum;
+    
+    public void putSum(){
+        sum++;
+    }
 
-    public synchronized void put() {
+    public synchronized void put() throws InterruptedException {
+        if(dem==2){
+            wait();
+        }
         dem++;
         notifyAll();
     }
@@ -30,11 +35,15 @@ public class Queue extends Thread {
                 wait();
             } catch (Exception ex) {
             }
+            if (sum == 3) {
+                break;
+            }
         }
-        if (dem == 2) {
+        if(dem == 2) {
             System.out.println("Output result.bin....");
             WriteFile.writeFileOutput();
         }
+        else System.out.println("Sai");
     }
 
 }

@@ -7,32 +7,31 @@ package Thread;
 
 import OpenFile.OpenFile;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author PC1
  */
-public class Dad extends Thread{
-    
-    private boolean ketqua;
+public class Dad extends Thread {
+
     private final Queue queue;
-    
-    public Dad(Queue queue){
+
+    public Dad(Queue queue) {
         this.queue = queue;
     }
 
-    public boolean isKetqua() {
-        return ketqua;
-    }
-    
-    
-    
     @Override
     public void run() {
-        ArrayList<String>  a = OpenFile.openFile("D:\\NetBeans\\FILE\\Quan\\dad.dat");
-        if(a.get(1).equals("21")){
-            queue.put();
+        ArrayList<String> a = OpenFile.openFile("D:\\NetBeans\\FILE\\Quan\\dad.dat");
+        if (a.get(1).equals("21")) {
+            try {
+                queue.put();
+            } catch (Exception ex) {
+            }
         }
+        queue.putSum();
     }
-    
+
 }

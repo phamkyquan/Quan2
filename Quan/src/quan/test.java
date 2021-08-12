@@ -7,7 +7,6 @@ package quan;
 
 import Thread.*;
 import java.text.ParseException;
-import WriteFile.WriteFile;
 
 /**
  *
@@ -15,7 +14,7 @@ import WriteFile.WriteFile;
  */
 public class test {
 
-    public static void main(String[] args) throws ParseException, InterruptedException {
+    public static void main(String[] args) {
         Queue queue = new Queue();
         Dad dad = new Dad(queue);
         Mom mom = new Mom(queue);
