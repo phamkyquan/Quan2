@@ -30,16 +30,16 @@ public class Queue extends Thread {
 
     @Override
     public void run() {
-        while (dem != 2) {
+        while (dem != 3) {
+            if (sum == 3) {
+                break;
+            }
             try {
                 wait();
             } catch (Exception ex) {
             }
-            if (sum == 3) {
-                break;
-            }
         }
-        if(dem == 2) {
+        if(dem == 3) {
             System.out.println("Output result.bin....");
             WriteFile.writeFileOutput();
         }

@@ -26,7 +26,7 @@ public class Mom extends Thread {
         try {
             int age = OpenFile.calculateAge(a.get(2));
             if (age == 21) {
-//                queue.put();
+                queue.put();
             }
         } catch (Exception ex) {
         }

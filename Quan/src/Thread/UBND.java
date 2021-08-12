@@ -26,7 +26,7 @@ public class UBND extends Thread {
         try {
             int age = OpenFile.calculateAge(a.get(5));
             if (age == 21) {
-//                queue.put();
+                queue.put();
             }
         } catch (Exception ex) {
         }
