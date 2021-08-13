@@ -6,6 +6,9 @@
 package quan;
 
 import Thread.*;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  *
@@ -13,15 +16,17 @@ import Thread.*;
  */
 public class test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, BrokenBarrierException{
+        CountDownLatch latch = new CountDownLatch(3);
         Queue queue = new Queue();
-        Dad dad = new Dad(queue);
-        Mom mom = new Mom(queue);
-        UBND ubnd = new UBND(queue);
+        Dad dad = new Dad(latch, queue);
+        Mom mom = new Mom(latch, queue);
+        UBND ubnd = new UBND(latch, queue);
         mom.start();
         dad.start();
         ubnd.start();
-        queue.start();
+        latch.await();
+        queue.end();
     }
 
 }
