@@ -1,17 +1,13 @@
 package Interface.Impl;
 
-import Interface.IGetAgeProcessor;
 import Thread.Queue;
-import java.util.concurrent.CountDownLatch;
 
-public abstract class BaseGetAgeProcessor implements Runnable, IGetAgeProcessor {
+public abstract class BaseGetAgeProcessor implements Runnable {
 
-    private final CountDownLatch latch;
     private final Queue queue;
     private int ageResult;
 
-    public BaseGetAgeProcessor(CountDownLatch latch, Queue queue) {
-        this.latch = latch;
+    public BaseGetAgeProcessor(Queue queue) {
         this.queue = queue;
     }
 
@@ -24,14 +20,8 @@ public abstract class BaseGetAgeProcessor implements Runnable, IGetAgeProcessor 
             }
         } catch (Throwable ex) {
             ex.printStackTrace();
-        } finally {
-            latch.countDown();
         }
-    }
-
-    @Override
-    public int getAge() {
-        return ageResult;
+        queue.countDown();
     }
     
     public abstract int getAgeOfQuan();

@@ -12,6 +12,7 @@ public class WriteFile {
             outFile = new FileWriter("D:\\NetBeans\\FILE\\Quan\\result.bin");
             out = new PrintWriter(outFile);
             out.write(str);
+            System.out.println("Output result.bin");
             out.close();
             outFile.close();
         } catch (Exception e) {

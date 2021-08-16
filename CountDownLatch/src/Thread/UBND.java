@@ -5,12 +5,11 @@ import Interface.Impl.BaseGetAgeProcessor;
 import OpenFile.OpenFile;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 
 public class UBND extends BaseGetAgeProcessor {
 
-    public UBND(CountDownLatch latch, Queue queue) {
-        super(latch, queue);
+    public UBND(Queue queue) {
+        super(queue);
     }
 
     @Override

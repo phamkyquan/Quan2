@@ -3,12 +3,11 @@ package Thread;
 import Interface.Impl.BaseGetAgeProcessor;
 import OpenFile.OpenFile;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 
 public class Mom extends BaseGetAgeProcessor {
 
-    public Mom(CountDownLatch latch, Queue queue) {
-        super(latch, queue);
+    public Mom(Queue queue) {
+        super(queue);
     }
 
     @Override

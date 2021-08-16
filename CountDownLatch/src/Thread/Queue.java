@@ -1,22 +1,59 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Thread;
 
-/**
- *
- * @author PC1
- */
-public class Queue {
+import WriteFile.WriteFile;
+
+public class Queue implements Runnable {
     private int count;
+    private int countThread;
     
-    public int getCount(){
-        return count;
+    public Queue(int countThread){
+        this.countThread = countThread;
+    }
+
+    public synchronized void put() throws InterruptedException {
+        if(count!=2){
+            count++;
+        }
+        else{
+            notifyAll();
+            wait();
+        }
     }
     
-    public synchronized void put(){
-        count++;
+    public synchronized void countDown(){
+        countThread--;
+        if(countThread==0){
+            notifyAll();
+        }
+        
+    }
+
+    public synchronized void result(){
+        if(count==2){
+            WriteFile.writeFileOutput("Đúng");
+            System.out.println("Đúng");
+        }
+        else {
+            WriteFile.writeFileOutput("Sai");
+            System.out.println("Sai");
+        }
+        if(countThread!=0){
+            notifyAll();
+        }
+    }
+
+    public synchronized void waiting() throws InterruptedException {
+        wait();
+    }
+
+    @Override
+    public void run() {
+        try {
+            waiting();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        result();
+
     }
 }
