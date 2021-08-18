@@ -20,8 +20,9 @@ public abstract class BaseGetAgeProcessor implements Runnable {
             }
         } catch (Throwable ex) {
             ex.printStackTrace();
+        }finally {
+            queue.countDown();
         }
-        queue.countDown();
     }
     
     public abstract int getAgeOfQuan();
