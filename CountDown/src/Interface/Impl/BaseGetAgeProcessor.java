@@ -16,11 +16,20 @@ public abstract class BaseGetAgeProcessor implements Runnable, IGetAgeProcessor 
     public void run() {
         try {
             ageResult = getAgeOfQuan();
+            for(int i = 0 ; i<200;i++){
+                System.out.println(i);
+            }
         } catch (Throwable ex) {
             ex.printStackTrace();
-        } finally {
-            latch.countDown();
         }
+        finally {
+            if(latch.getCount()!=0){
+                latch.countDown();
+            }
+        }
+
+
+
     }
 
     @Override
